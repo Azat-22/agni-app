@@ -1,0 +1,42 @@
+export const data4 = [
+  {
+    avatar: "/art.avif",
+    surname: "Иванов",
+    name: "Артем",
+    patronymic: "Петрович",
+    role: "student",
+    email: "Art@gmail.com",
+  },
+  {
+    avatar: "/Ivan.avif",
+    surname: "Иванов",
+    name: "Ян",
+    patronymic: "Азатович",
+    role: "student",
+    email: "Ivan@mail.ru",
+  },
+  {
+    avatar: "/Ser.avif",
+    surname: "Камилов",
+    name: "Сергей",
+    patronymic: "Петрович",
+    role: "student",
+    email: "Ser@yandex.ru",
+  },
+  {
+    avatar: "/Ser.avif",
+    surname: "Камилов",
+    name: "Сергей",
+    patronymic: "Петрович",
+    role: "student",
+    email: "Ser@yandex.ru",
+  },
+  {
+    avatar: "/Ser.avif",
+    surname: "Камалов",
+    name: "Андрей",
+    patronymic: "Петрович",
+    role: "student",
+    email: "Ser@yandex.ru",
+  },
+];
