@@ -2,7 +2,9 @@ import type { FC, ReactNode } from "react";
 import { AppShell, useMantineTheme } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { AdminNavbar } from "../navbar/AdminNavbar";
+
 import { AdminHeader } from "../header/AdminHeader";
+
 
 type AdminPageLayoutType = {
   children?: ReactNode | ReactNode[];

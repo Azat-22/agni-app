@@ -55,7 +55,7 @@ function CaruselCard({ image, title, text,link }: CardProps) {
           <div className="flex items-center justify-center mx-auto my-auto">
             <Link href={link}>
               <Button variant="outline" radius="md">
-                Нажми на меня
+                Профиль
               </Button>
             </Link>
           </div>

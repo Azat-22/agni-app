@@ -10,13 +10,21 @@ export const TeacherContacts: FC<TeacherContactsProps> = (data) => {
     <div>
       <Group noWrap>
         <div>
-          <Text fz="xs" tt="uppercase" fw={700} ml={25}>
+          <Text
+            className={classes.title}
+            fz="xs"
+            tt="uppercase"
+            fw={700}
+            ml={25}
+          >
             {data.title}
           </Text>
           {data.email === "" ? null : (
             <Group noWrap spacing={10} mt={3}>
               <IconAt stroke={1.5} size="1rem" className={classes.icon} />
-              <Text fz="xs">{data.email}</Text>
+              <Text className={classes.title} fz="xs">
+                {data.email}
+              </Text>
             </Group>
           )}
           {data.phone === "" ? null : (
@@ -26,7 +34,9 @@ export const TeacherContacts: FC<TeacherContactsProps> = (data) => {
                 size="1rem"
                 className={classes.icon}
               />
-              <Text fz="xs">{data.phone}</Text>
+              <Text className={classes.title} fz="xs">
+                {data.phone}
+              </Text>
             </Group>
           )}
         </div>

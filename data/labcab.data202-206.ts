@@ -2,17 +2,30 @@ import { FeatureImage } from "../components/home/information/labcab202-206";
 export const caruselImageData: FeatureImage[] = [
   {
     id: 1,
-    image: "/labCab/204-10.jpg",
+    image: "/labCab/school.jpg",
     title: "Лаборатория Программного обеспечения",
     description: "(каб. В-202)",
     slides: [
       {
         id: 1,
         slideTitle: "Лаборатория Программного обеспечения",
-        slideDescription:
-          "Стенд контрольно-измерительных приборов и автоматики Yokogawa",
-        slideImgUrl: "/labCab/204-10.jpg",
+        slideDescription: "Компьютерный класс",
+        slideImgUrl: "/labCab/school.jpg",
       },
+      {
+        id: 2,
+        slideTitle: "Лаборатория Программного обеспечения",
+        slideDescription: "МПСА нефтеперекачивающих станций МНС и ПНС",
+        slideImgUrl: "/labCab/МПС.jpg",
+      },
+      
+      {
+        id: 3,
+        slideTitle: "Лаборатория Программного обеспечения",
+        slideDescription: " Управление трехфазным нефтегазосепаратором",
+        slideImgUrl: "/labCab/sep.gif",
+      },
+      
     ],
   },
 ];

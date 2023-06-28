@@ -1,5 +1,5 @@
 import { useAppDispath, useAppSelector } from "@/api/redux/hooks";
-import { logoutData, selectUserData } from "@/api/redux/slices/user";
+import { logout, selectUserData } from "@/api/redux/slices/user";
 import { useMantineTheme, ActionIcon, MediaQuery, Button} from "@mantine/core";
 import { Menu, Group, Text, Avatar } from "@mantine/core";
 import { IconLogout, IconHeart, IconStar } from "@tabler/icons-react";
@@ -10,23 +10,18 @@ import Link from "next/link";
 import { destroyCookie, parseCookies } from "nookies";
 import { useRouter } from "next/router";
 
+
 export const UserMenu = () => {
   const theme = useMantineTheme();
   const dispatch = useAppDispath();
   const router = useRouter();
-  const loginData = useAppSelector(selectUserData);
+  const userData = useAppSelector(selectUserData);
   function logoutOnClick() {
     const cookies = parseCookies();
-    console.log({ cookies });
-    try {
+    console.log({ ...cookies });
       destroyCookie(null, "loginToken");
-      dispatch(logoutData(null));
-      console.log(null);
+      dispatch(logout(null));
       router.push("/");
-    } catch (error) {
-      alert("Ошибка при логине");
-      console.warn("Login error", error);
-    }
   }
 
   return (
@@ -42,20 +37,21 @@ export const UserMenu = () => {
           <Menu.Target>
             <ActionIcon className="flex items-center w-full px-4 py-7">
               <Group>
+                
                 <Avatar
                   radius="xl"
                   src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=255&q=80"
                 />
 
-                <div>
+                <div className="flex gap-1">
                   <Text fz="xs" c="blue">
-                    {loginData?.profile.firstName}
+                    {userData?.profile.firstName}
                   </Text>
                   <Text fz="xs" c="blue">
-                    {loginData?.profile.lastName}
+                    {userData?.profile.lastName}
                   </Text>
                   <Text fz="xs" c="blue">
-                    {loginData?.profile.patronymic}
+                    {userData?.profile.patronymic}
                   </Text>
                 </div>
                 <IconChevronDown className="h-5 w-5" />
@@ -72,7 +68,7 @@ export const UserMenu = () => {
                 />
               }
             >
-              <Link href="/profile">Профиль</Link>
+              <Link href="/profile"> Мой Профиль</Link>
             </Menu.Item>
             <Menu.Item
               icon={
@@ -83,7 +79,7 @@ export const UserMenu = () => {
                 />
               }
             >
-              Saved posts
+              Мои посты
             </Menu.Item>
             <Menu.Item
               icon={
@@ -94,33 +90,27 @@ export const UserMenu = () => {
                 />
               }
             >
-              Your comments
+              Мои комментарии
             </Menu.Item>
 
             <Menu.Label>Settings</Menu.Label>
             <Menu.Item icon={<IconSettings size="0.9rem" stroke={1.5} />}>
-              Account settings
+              Настройки аккаунта
             </Menu.Item>
-            <Menu.Item
-              icon={<IconSwitchHorizontal size="0.9rem" stroke={1.5} />}
-            >
-              Change account
-            </Menu.Item>
-            <Menu.Item icon={<IconLogout size="0.9rem" stroke={1.5} />}>
-              <Button onClick={logoutOnClick}>Logout</Button>
+            
+            <Menu.Item icon={<IconLogout size="0.9rem" stroke={1.5} />} onClick={logoutOnClick}>
+               Выйти
             </Menu.Item>
 
             <Menu.Divider />
 
             <Menu.Label>Danger zone</Menu.Label>
-            <Menu.Item icon={<IconPlayerPause size="0.9rem" stroke={1.5} />}>
-              Pause subscription
-            </Menu.Item>
+            
             <Menu.Item
               color="red"
               icon={<IconTrash size="0.9rem" stroke={1.5} />}
             >
-              Delete account
+              Удалить аккаунт
             </Menu.Item>
           </Menu.Dropdown>
         </Menu>

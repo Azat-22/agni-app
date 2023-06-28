@@ -1,20 +1,20 @@
- export interface UsersTableProps {
-  data: {
-    avatar: string;
-    name: string;
-    role: string;
-    email: string;
-    surname: string;
-    patronymic: string;
-  }[];
-}
+ export interface ResponseUser {
+   data: {
+     username: string;
+     email: string;
+     lastName: string;
+     firstName: string;
+     patronymic: string;
+     name: string;
+   }[];
+ }
 export interface RowData {
-  avatar: string;
-  name: string;
-  role: string;
+  username: string;
   email: string;
-  surname: string;
+  lastName: string;
+  firstName: string;
   patronymic: string;
+  name: string;
 }
 
 export interface ThProps {

@@ -1,15 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ResponseLogin, ResponseUser } from "../../type";
+import { ResponseUser } from "../../type";
 import { RootState } from "../store";
+import { HYDRATE } from "next-redux-wrapper";
 
 export interface UserState {
   data: ResponseUser | null;
-  datalogin: ResponseLogin | null;
 }
 
 const initialState: UserState = {
   data: null,
-  datalogin: null,
 };
 export const userSlice = createSlice({
   name: "user",
@@ -18,17 +17,18 @@ export const userSlice = createSlice({
     setUserData: (state, action: PayloadAction<ResponseUser>) => {
       state.data = action.payload;
     },
-    setLoginData: (state, action: PayloadAction<ResponseLogin>) => {
-      state.datalogin = action.payload;
+    logout: (state, action: PayloadAction<null>) => {
+      state.data = action.payload;
     },
-    logoutData: (state, action: PayloadAction<null>) => {
-      state.datalogin = action.payload;
+  },
+  extraReducers: {
+    [HYDRATE]: (state, action) => {
+      state.data = action.payload.user.data;
     },
   },
 });
 
-export const { setUserData, logoutData, setLoginData} =
-  userSlice.actions;
+export const { setUserData, logout } = userSlice.actions;
 
-export const selectUserData = (state: RootState) => state.user.datalogin;
+export const selectUserData = (state: RootState) => state.user.data;
 export const userAuth = userSlice.reducer;

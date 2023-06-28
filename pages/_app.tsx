@@ -1,11 +1,13 @@
-import { store } from "@/api/redux/store";
+
+import { wrapper } from "@/api/redux/store";
 import "@/styles/globals.css";
 import { ColorScheme, ColorSchemeProvider, MantineProvider } from "@mantine/core";
 import { useHotkeys, useLocalStorage } from "@mantine/hooks";
-import type { AppProps } from "next/app";
-import { Provider } from "react-redux";
 
-export default function App({ Component, pageProps }: AppProps) {
+import type { AppProps } from "next/app";
+
+
+function App({ Component, pageProps }: AppProps) {
   const [colorScheme, setColorScheme] = useLocalStorage<ColorScheme>({
     key: "mantine-color-scheme",
     defaultValue: "light",
@@ -18,7 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
   useHotkeys([["mod+J", () => toggleColorScheme()]]);
 
   return (
-    <Provider store = {store}>
+    
     <ColorSchemeProvider
       colorScheme={colorScheme}
       toggleColorScheme={toggleColorScheme}
@@ -32,6 +34,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
       </MantineProvider>
     </ColorSchemeProvider>
-    </Provider>
+    
   );
-}
+};
+export default  wrapper.withRedux(App)

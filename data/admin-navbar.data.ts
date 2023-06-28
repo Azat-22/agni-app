@@ -24,7 +24,7 @@ export const data = [
     label: "Управление студентами",
     icon: IconKey,
   },
-  { link: "", label: "Управление каталогом", icon: IconDatabaseImport },
+  { link: "/(admin)/catalog", label: "Управление каталогом", icon: IconDatabaseImport },
   { link: "", label: "Управление новостным блогом", icon: Icon2fa },
   
 ];

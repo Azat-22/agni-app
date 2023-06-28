@@ -1,7 +1,10 @@
-import { Box, Burger, Center, Header, MediaQuery } from "@mantine/core";
+import { Box, Burger, Center, Header, MediaQuery, Button } from "@mantine/core";
 import { Logo } from "../logo/Logo";
 import { UserMenu} from "../userMenu/UserMenu";
 import { ThemeToggle } from "../theme/ThemeToggle";
+import { selectUserData } from "@/api/redux/slices/user";
+import { useAppSelector } from "@/api/redux/hooks";
+import Link from "next/link";
 
 export const CatalogHeader = ({
   opened,
@@ -10,7 +13,7 @@ export const CatalogHeader = ({
   opened: boolean;
   toggle: () => void;
 }) => {
-  
+  const userData = useAppSelector(selectUserData);
   return (
     <Header height={{ base: 70, md: 80 }} p="md">
       <div
@@ -31,7 +34,16 @@ export const CatalogHeader = ({
               <Burger opened={opened} onClick={toggle} />
             </Center>
           </MediaQuery>
-          <UserMenu />
+
+          {userData === null ? (
+            <Link href="/auth/register">
+            <Button fullWidth variant="outline">
+              Авторизация
+            </Button>
+            </Link>
+          ) : (
+            <UserMenu />
+          )}
           <ThemeToggle />
         </Box>
       </div>

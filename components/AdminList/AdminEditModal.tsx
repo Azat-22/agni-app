@@ -94,14 +94,9 @@ export const AdminEditModal = () => {
           </Group>
         </form>
       </Modal>
-            <ActionIcon
-              color="yellow"
-              variant="outline"
-              radius="xs"
-              onClick={open}
-            >
-              <IconPencil size="1rem" stroke={1.5} />
-            </ActionIcon>
+      <ActionIcon color="yellow" variant="outline" radius="xs" onClick={open}>
+        <IconPencil size="1rem" stroke={1.5} />
+      </ActionIcon>
     </>
   );
 };

@@ -5,7 +5,6 @@ import { useDisclosure } from "@mantine/hooks";
 import { Logo } from "../logo/Logo";
 import { useState } from "react";
 
-
 import { IconLogout } from "@tabler/icons-react";
 import Link from "next/link";
 import { UserMenu } from "../userMenu/UserMenu";
@@ -19,8 +18,8 @@ export const BaseHeader = () => {
   const [active] = useState("Billing");
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] =
     useDisclosure(false);
-  const { classes, theme, cx} = useStyles();
-  const loginData = useAppSelector(selectUserData);
+  const { classes, theme, cx } = useStyles();
+  const userData = useAppSelector(selectUserData);
   return (
     <Box>
       <Header height={60} px="md">
@@ -46,24 +45,28 @@ export const BaseHeader = () => {
             <Link href="https://agni-rt.ru/" className={classes.link}>
               Сайт АГНИ
             </Link>
-            <Link href="/(admin)/dashboard" className={classes.link}>
-              Панель управления
-            </Link>
+            <>
+              {userData !== null ? (
+                <Link href="/(admin)/dashboard" className={classes.link}>
+                  Панель управления
+                </Link>
+              ) : null}
+            </>
             <Link href="/catalog" className={classes.link}>
               Каталог
             </Link>
           </Group>
           <Group>
             <Group className={classes.hiddenMobile}>
-              {loginData ? (
+              {userData ? (
                 <UserMenu />
               ) : (
-                <Link href="/auth">
+                <Link href="/auth/register">
                   <Button fullWidth variant="outline">
                     Авторизация
                   </Button>
                 </Link>
-              )} 
+              )}
             </Group>
             <Group>
               <Burger
@@ -91,12 +94,14 @@ export const BaseHeader = () => {
             color={theme.colorScheme === "dark" ? "dark.5" : "gray.1"}
           />
           <Group position="center" grow pb="xl">
-            {loginData ? null : (
-              <Link href="/auth/">
+            {userData === null ? (
+              <Link href="/auth/register">
                 <Button fullWidth variant="outline">
                   Авторизация
                 </Button>
               </Link>
+            ) : (
+              <UserMenu />
             )}
           </Group>
           {datascroll.map((item) => (

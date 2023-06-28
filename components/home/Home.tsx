@@ -10,7 +10,7 @@ import { useStyles } from "@/styles/Home.style";
 
 export function Home({ data }: HomeProps) {
   const { classes } = useStyles();
-  const loginData = useAppSelector(selectUserData);
+  const userData = useAppSelector(selectUserData);
   return (
     <div>
       <Container key={data.title}>
@@ -38,16 +38,15 @@ export function Home({ data }: HomeProps) {
                 <List.Item key={interest.id}>{interest.text}</List.Item>
               ))}
             </List>
-
-            <Group mt={30} className="justify-center">
-              {loginData ? null : (
-                <Link href="/auth">
+            {userData ? null : (
+              <Group mt={30} className="justify-center">
+                <Link href="/auth/register">
                   <Button radius="xl" size="md" className={classes.control}>
                     Включайся
                   </Button>
                 </Link>
-              )}
-            </Group>
+              </Group>
+            )}
           </div>
           <div className={classes.image}>
             <Image

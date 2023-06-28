@@ -15,7 +15,13 @@ export const TeacherProfessionalInterests: FC<ProfessionalInterestsType> = ({
         <div key={idx}>
           <Group key={idx}>
             <div>
-              <Text fz="xs" tt="uppercase" fw={700} ml={25}>
+              <Text
+                className={classes.title}
+                fz="xs"
+                tt="uppercase"
+                fw={700}
+                ml={25}
+              >
                 {item.title}
               </Text>
               {item.interests.map((interest) => (
@@ -25,7 +31,7 @@ export const TeacherProfessionalInterests: FC<ProfessionalInterestsType> = ({
                     size="1rem"
                     className={classes.icon1}
                   />
-                  <Text key={interest.id} fz="xs">
+                  <Text className={classes.title} key={interest.id} fz="xs">
                     {interest.text}
                   </Text>
                 </Group>
